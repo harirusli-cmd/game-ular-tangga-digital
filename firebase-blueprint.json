@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "TeacherProfile": {
+      "title": "TeacherProfile",
+      "description": "Information about a logged-in teacher administrator",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "lastLoginAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "CurriculumCollection": {
+      "title": "CurriculumCollection",
+      "description": "Materials, questions, and board setup for the teacher",
+      "type": "object",
+      "properties": {
+        "items": { "type": "array" },
+        "config": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "StudentProfile": {
+      "title": "StudentProfile",
+      "description": "Student profile with progress, medals, and game history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "avatar": { "type": "string" },
+        "stats": { "type": "object" },
+        "achievements": { "type": "array" },
+        "recentGames": { "type": "array" },
+        "gameHistory": { "type": "array" }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "firestore": {
+    "/teachers/{teacherId}": {
+      "schema": "TeacherProfile",
+      "description": "Teacher profile and metadata"
+    },
+    "/teachers/{teacherId}/curriculum/{docId}": {
+      "schema": "CurriculumCollection",
+      "description": "Custom materials, questions, and board configuration specific to this teacher"
+    },
+    "/teachers/{teacherId}/students/{studentId}": {
+      "schema": "StudentProfile",
+      "description": "Student records enrolled under this teacher"
+    },
+    "/curriculum/{docId}": {
+      "schema": "CurriculumCollection",
+      "description": "Default / fallback game curriculum"
+    },
+    "/students/{studentId}": {
+      "schema": "StudentProfile",
+      "description": "Global student profiles"
+    }
+  }
+}

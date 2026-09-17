@@ -1,0 +1,6 @@
+{
+  "name": "Ular Tangga Interaktif",
+  "description": "Game web edukasi Ular Tangga Interaktif dan menyenangkan untuk siswa SD Kelas 1-6 dengan materi berbagai mata pelajaran, bank soal, dan visual editor papan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

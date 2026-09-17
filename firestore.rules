@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Individual teacher workspace (segregated per Google account)
+    match /teachers/{teacherId}/{allChildren=**} {
+      allow read, write: if true;
+    }
+
+    // Shared / fallback curriculum (materials, questions, board config)
+    match /curriculum/{docId} {
+      allow read, write: if true;
+    }
+    
+    // Student profiles and achievements
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+    
+    // Fallback for any other game data
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
